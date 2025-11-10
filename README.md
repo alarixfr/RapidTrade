@@ -1,6 +1,5 @@
 # RapidTrade
 CLI App To Make Scalping Easier.
-
 Made by trader for trader.
 
 Features:
@@ -10,6 +9,7 @@ Features:
 - Target Price Calculator
 - RR Ratio
 - Journal and summary (using JSON file)
+- Ask Gemini (API)
 
 # Setup
 Make sure you have installed git and python3 ✅
@@ -32,6 +32,14 @@ pip3 install -r requirements.txt
 Run:
 ```bash
 python3 main.py
+```
+
+## Gemini
+To use Gemini AI on RapidTrade, you need to put your Gemini API key on "api.json" file:
+```json
+{
+  "geminikey": "YOUR_GEMINI_API_KEY_HERE"
+}
 ```
 
 ## DONATE
