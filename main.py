@@ -26,16 +26,18 @@ def banner():
   print(Fore.YELLOW + "RapidTrade v0.0.0")
 
 def menu():
-  print(Fore.RED + "Tools Lists:")
-  print("cc - Compound Calc")
-  print("rc - ROI Calc")
-  print("pc - PnL Calc")
-  print("tc - TP Calc")
+  clear()
+  banner()
+  
+  print(Fore.BLUE + "Tools Lists:")
+  print("compound - Compound Calc")
+  print("profit - Profit Calc")
+  print("percent - Percentage Calc")
+  print("tp - TP Calc")
   print("rr - RR Ratio")
-  print("j - Journal")
+  print("journal - Journal")
   print("ai - Gemini AI*\n")
   tool = str(input(Fore.GREEN + "Select Tool (by id or name): "))
+  
 
-clear()
-banner()
 menu()
