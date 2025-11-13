@@ -30,11 +30,11 @@ def menu():
   banner()
   
   print(Fore.BLUE + "Tools Lists:")
-  print("compound - Compound Calc")
+  print("compound - Compounding Calc")
   print("profit - Profit Calc")
   print("percent - Percentage Calc")
   print("tp - TP Calc")
-  print("rr - RR Ratio")
+  print("rr - RR Ratio Calc")
   print("journal - Journal")
   print("ai - Gemini AI*\n")
   tool = str(input(Fore.GREEN + "Select Tool (by id or name): "))

@@ -4,12 +4,14 @@ Made by trader for trader.
 
 Features:
 - Compounding Calculator
-- ROI Calculator
-- PnL Calculator
+- Profit Calculator
+- Percentage Change Calculator
 - Target Price Calculator
-- RR Ratio
+- RR Ratio Calc
 - Journal and summary (using JSON file)
-- Ask Gemini (API)
+- Ask Gemini* (API)
+
+* still in development
 
 # Setup
 Make sure you have installed git and python3 ✅
