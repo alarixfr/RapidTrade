@@ -41,10 +41,22 @@ def getInput(dataType, msg):
   else:
     print(Fore.RED + "Error")
 
+def roiFormula(startAmount, finalAmount):
+  netProfit = float(finalAmount) - float(startAmount)
+  roi = netProfit/startAmount * 100
+  
+  return float(f"{roi:.2f}")
+
+def isProfit(amount):
+  if float(amount) > 0:
+    return True
+  else:
+    return False
+
 def compound():
   balance = 0
   duration = ''
-  time = 2
+  time = 0
   growth = 0
   total = 0
   
@@ -52,7 +64,18 @@ def compound():
     total = p * pow(1 + (r/100), d)
     return float(f"{total:.2f}")
   
-  balance = getInput("number", "Starting Balance: ")
+  balanceCheck = 0
+  timeCheck = 0
+  growthCheck = 0
+  
+  while balanceCheck <= 0:
+    balanceCheck = getInput("number", "Starting Balance: ")
+    if balanceCheck <= 0:
+      print(Fore.RED + "Number Need To Be > 0")
+      continue
+    else:
+      balance = balanceCheck
+      break
   
   while duration not in ["yearly", "monthly", "daily"]:
     duration = getInput("string", "Duration (y/m/d): ").lower()
@@ -65,13 +88,66 @@ def compound():
     else:
       print(Fore.RED + "Invalid Duration")
   
-  time = getInput("number", f"Amount of {duration}'s?: ")
-  growth = getInput("number", f"Growth/{duration} (%): ")
+  while timeCheck <= 0:
+    timeCheck = getInput("number", f"Amount Of {duration}'s: ")
+    if timeCheck <= 0:
+      print(Fore.RED + "Number Need To Be > 0")
+      continue
+    else:
+      time = timeCheck
+      break
+  
+  while growthCheck <= 0:
+    growthCheck = getInput("number", f"Growth/{duration} (%): ")
+    if growthCheck <= 0:
+      print(Fore.RED + "Number Need To Be > 0")
+      continue
+    else:
+      growth  = growthCheck
+      break
   
   total = str(compoundFormula(balance, growth, time))
+  roi = str(roiFormula(balance, total))
+  profit = str(isProfit(total))
   
-  print("/n")
-  print(f"{balance} after {growth}% for {time} {duration}'s: " + total)
+  print("\n")
+  print(f"{balance} after {growth}% for {time} {duration}'s:")
+  print("Final Amount: " + total)
+  print("ROI: " + roi + "%")
+  print("Is Profit: " + profit)
+ 
+def profit():
+  startAmount = 0
+  finalAmount = 0
+  
+  startAmountCheck = 0
+  finalAmountCheck = 0
+  
+  while startAmountCheck <= 0:
+    startAmountCheck = getInput("number", "Buy: ")
+    if startAmountCheck <= 0:
+      print(Fore.RED + "Number Need To Be > 0")
+      continue
+    else:
+      startAmount = startAmountCheck
+      break
+  
+  while finalAmountCheck <= 0:
+    finalAmountCheck = getInput("number", "Sell: ")
+    if finalAmountCheck <= 0:
+      print(Fore.RED + "Number Need To Be > 0")
+      continue
+    else:
+      finalAmount = finalAmountCheck
+      break
+  
+  roi = str(roiFormula(startAmount, finalAmount))
+  profit = str(isProfit(roi))
+  
+  print("\n")
+  print(f"Initial Investment: {startAmount:.2f}\nSell Price: {finalAmount:.2f}")
+  print("ROI: " + roi + "%")
+  print("Is Profit: " + profit)
   
 def menu():
   clear()
@@ -79,24 +155,15 @@ def menu():
   
   print(Fore.BLUE + "Tools Lists:")
   print("compound - Compounding Calc")
-  print("profit - Profit Calc")
-  print("percent - Percentage Calc")
-  print("tp - TP Calc")
-  print("rr - RR Ratio Calc")
+  print("profit - Profit/ROI Calc")
   print("journal - Journal")
   print("ai - Gemini AI*\n")
   tool = str(input(Fore.GREEN + "Select Tool (by id or name): ")).lower()
   match tool:
-    case "compound" | "compounding" | "c":
+    case "compound" | "compounding" | "c" | "g":
       compound()
-    case "profit" | "pnl" | "p":
+    case "profit" | "roi" | "p" | "r":
       profit()
-    case "percent" | "percentage" | "%":
-      percentage()
-    case "takeprofit" | "tp" | "sell":
-      takeProfit()
-    case "riskreward" | "rr" | "rrratio":
-      riskReward()
     case "journal" | "j" | "note":
       journal()
     case "ai" | "gemini" | "ask":

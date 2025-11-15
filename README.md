@@ -5,9 +5,6 @@ Made by trader for trader.
 Features:
 - Compounding Calculator
 - Profit Calculator
-- Percentage Change Calculator
-- Target Price Calculator
-- RR Ratio Calc
 - Journal and summary (using JSON file)
 - Ask Gemini* (API)
 
