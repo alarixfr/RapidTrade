@@ -47,6 +47,12 @@ def roiFormula(startAmount, finalAmount):
   
   return float(f"{roi:.2f}")
 
+def percentageIncreaseFormula(amount, percentage):
+  
+  percentIncrease = float(amount) * (1 + float(percentage)/100)
+  
+  return float(f"{percentIncrease:.2f}")
+
 def isProfit(amount):
   if float(amount) > 0:
     return True
@@ -148,7 +154,40 @@ def profit():
   print(f"Initial Investment: {startAmount:.2f}\nSell Price: {finalAmount:.2f}")
   print("ROI: " + roi + "%")
   print("Is Profit: " + profit)
+
+def percentageIncrease():
+  amount = 0
+  percent = 0
   
+  amountCheck = 0
+  percentCheck = 0
+  
+  while amountCheck <= 0:
+    amountCheck = getInput("number", "Balance: ")
+    if amountCheck <= 0:
+      print(Fore.RED + "Number Need To Be > 0")
+      continue
+    else:
+      amount = amountCheck
+      break
+  
+  while percentCheck <= 0:
+    percentCheck = getInput("number", "Percent (%): ")
+    if percentCheck <= 0:
+      print(Fore.RED + "Number Need To Be > 0")
+      continue
+    else:
+      percent = percentCheck
+      break
+  
+  result = str(percentageIncreaseFormula(amount, percent))
+  amountIncrease = str(percentageIncreaseFormula(amount, percent) - amount)
+  
+  print("\n")
+  print(f"Amount: {amount:.2f}\nPercentage Increase: {percent:.2f}%")
+  print("Amount Increase: " + amountIncrease)
+  print("Final Amount: " + result)
+
 def menu():
   clear()
   banner()
@@ -156,6 +195,7 @@ def menu():
   print(Fore.BLUE + "Tools Lists:")
   print("compound - Compounding Calc")
   print("profit - Profit/ROI Calc")
+  print("percent - Percentage Increase Calc")
   print("journal - Journal")
   print("ai - Gemini AI*\n")
   tool = str(input(Fore.GREEN + "Select Tool (by id or name): ")).lower()
@@ -164,6 +204,8 @@ def menu():
       compound()
     case "profit" | "roi" | "p" | "r":
       profit()
+    case "percent" | "increase" | '%':
+      percentageIncrease()
     case "journal" | "j" | "note":
       journal()
     case "ai" | "gemini" | "ask":

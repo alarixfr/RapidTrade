@@ -5,6 +5,7 @@ Made by trader for trader.
 Features:
 - Compounding Calculator
 - Profit Calculator
+- Percentage Increase Calculator
 - Journal and summary (using JSON file)
 - Ask Gemini* (API)
 
